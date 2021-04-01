@@ -1,2 +1,45 @@
+@import "src/components/common/styles/base/variables";
+$border-color: $gray-light;
+
 .page {
+
+}
+
+.title {
+  text-align: center;
+}
+
+.table {
+  min-width: 480px;
+  max-width: 60%;
+  margin: 0 auto;
+
+  border-collapse: collapse;
+
+  @media screen and (max-width: $screen-sm) {
+    min-width: 320px;
+    max-width: 90%;
+  }
+
+  th,
+  td {
+    padding: 10px;
+
+    border: 1px solid $border-color;
+  }
+
+  td {
+    padding: 15px;
+  }
+
+  tr td:first-of-type {
+    width: 1%;
+
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  tr td:last-of-type {
+    text-align: center;
+  }
 }
