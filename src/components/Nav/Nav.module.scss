@@ -19,11 +19,14 @@ $linesGap: 10px;
 $linesTotalH: $lineH*2 + $linesGap;
 $btnHorPad: ($btnSize - $lineW) / 2;
 $btnVertPad: ($btnSize - $linesTotalH) / 2;
+
 $itemsLeftPad: 20px;
 $itemsRightPad: $itemsLeftPad + $btnSize;
 $itemWidth: 90px;
+$itemPad: 10px;
 $navItemsWidth: $itemsLeftPad + $itemsRightPad + $itemWidth * $numOfItems;
 $textAT: $navAT - $textDelayStep * ($numOfItems - 1);
+
 $textFadeAT: 0.2s;
 $cub: cubic-bezier(0.48, 0.43, 0.29, 1.3);
 $backCub: cubic-bezier(0.49, -0.3, 0.68, 1.23);
@@ -85,15 +88,15 @@ $textCub: cubic-bezier(0.48, 0.43, 0.7, 2.5);
 
   &__item {
     display: inline-block;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: $itemPad;
+    padding-left: $itemPad;
     //width: $itemWidth;
 
     font-weight: bold;
     font-size: $font-size;
     line-height: $btnSize;
     font-family: $font-family;
-    vertical-align: middle;
+    vertical-align: top;
     text-align: center;
 
     perspective: 1000px;
@@ -129,6 +132,8 @@ $textCub: cubic-bezier(0.48, 0.43, 0.7, 2.5);
       }
 
       &_active {
+        color: $darkColor;
+
         cursor: default;
       }
 
@@ -137,7 +142,6 @@ $textCub: cubic-bezier(0.48, 0.43, 0.7, 2.5);
       }
 
       @media (hover: hover) {
-        &_active,
         &:hover,
         &:focus {
           color: $darkColor;

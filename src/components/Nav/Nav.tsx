@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './Nav.module.scss';
@@ -7,22 +7,12 @@ import { randomId } from '../../utils/randomId';
 import { capitalizeFirstLetter } from '../../utils/textTransform';
 
 export const Nav: FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const navLinks = Object.values(PATH);
   const navLinksWithoutError404 = navLinks.slice(0, navLinks.length - 1);
 
   return (
     <nav className={s.nav}>
-      <input
-        className={s.nav__control}
-        type="checkbox"
-        id="menu-cb"
-        checked={isOpen}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      />
+      <input className={s.nav__control} type="checkbox" id="menu-cb" />
 
       <div className={s.nav__content}>
         <ul className={s.nav__items}>
@@ -42,7 +32,6 @@ export const Nav: FC = () => {
           ))}
         </ul>
       </div>
-
       <label className={s.nav__btn} htmlFor="menu-cb" />
     </nav>
   );
