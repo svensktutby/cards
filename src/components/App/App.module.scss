@@ -1,6 +1,7 @@
 .app {
+  position: relative;
 }
 
 .container {
-  composes: container from '../common/styles/container.module.scss';
+  composes: container from "../common/styles/container.module.scss";
 }

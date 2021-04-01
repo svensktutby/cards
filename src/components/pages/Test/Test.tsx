@@ -4,7 +4,7 @@ import s from './Test.module.scss';
 
 export const Test: FC = () => {
   return (
-    <div className={s.test}>
+    <div className={s.page}>
       <div>Test</div>
     </div>
   );

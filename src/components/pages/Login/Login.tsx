@@ -4,7 +4,7 @@ import s from './Login.module.scss';
 
 export const Login: FC = () => {
   return (
-    <div className={s.login}>
+    <div className={s.page}>
       <div>Login</div>
     </div>
   );
