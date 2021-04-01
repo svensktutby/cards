@@ -1,0 +1,14 @@
+@import "src/components/common/styles/base/variables";
+
+.header {
+  height: $header-height;
+
+  background-color: $theme-color;
+}
+
+.container {
+  composes: container from "../common/styles/container.module.scss";
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

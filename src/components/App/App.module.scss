@@ -1,0 +1,6 @@
+.app {
+}
+
+.container {
+  composes: container from '../common/styles/container.module.scss';
+}
