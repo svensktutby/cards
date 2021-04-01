@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import s from './App.module.scss';
 import { Header } from '../Header';
-import { Profile } from '../pages/Profile';
+import { Routes } from './Routes';
 
 export const App: FC = () => {
   return (
-    <div className={s.app}>
-      <Header />
+    <Router>
+      <div className={s.app}>
+        <Header />
 
-      <div className={s.container}>
-        <Profile />
+        <div className={s.container}>
+          <Routes />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
