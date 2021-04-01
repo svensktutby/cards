@@ -1,7 +1,7 @@
 @import "src/components/common/styles/base/variables";
-$bg-color: $color-main;
+$bg-color: lighten($theme-color, 10%);
 $text-color: $white;
-$footer-text-color: $gray-lighter;
+$footer-text-color: $gray-lightest;
 
 .page {
   position: fixed;
@@ -14,12 +14,18 @@ $footer-text-color: $gray-lighter;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 4rem;
 
   background-color: $bg-color;
+
+  @media screen and (max-width: $screen-sm) and (orientation: landscape) {
+    padding-top: 2rem;
+  }
 }
 
 .title {
   flex-grow: 1;
+  margin-top: 0;
 
   font-size: 3rem;
   text-align: center;
@@ -42,8 +48,8 @@ $footer-text-color: $gray-lighter;
 
 .footer {
   margin-top: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 
 .footerText {
@@ -64,11 +70,11 @@ $footer-text-color: $gray-lighter;
   @media (hover: hover) {
     &:hover,
     &:focus {
-      color: darken($text-color, 40%);
+      color: darken($text-color, 20%);
     }
 
     &:active {
-      color: darken($text-color, 40%);
+      color: darken($text-color, 30%);
     }
   }
 }

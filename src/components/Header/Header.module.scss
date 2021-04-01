@@ -9,6 +9,9 @@
 .container {
   composes: container from "../common/styles/container.module.scss";
 
-  padding-top: 10px;
-  padding-bottom: 10px;
+  position: relative;
+
+  height: $header-height;
+  padding-top: 0;
+  padding-bottom: 0;
 }
