@@ -5,6 +5,7 @@ import { Preloader } from '../../common/Preloader';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { Checkbox } from '../../common/Checkbox';
+import { randomId } from '../../../utils/randomId';
 
 type ExampleType = [ElementType, Record<string, unknown>];
 type ExamplesType = Record<string, ExampleType>;
@@ -24,22 +25,26 @@ export const Test: FC = () => {
       <h1 className={s.title}>Common components:</h1>
 
       <table className={s.table}>
-        <tr>
-          <th>Title</th>
-          <th>Example</th>
-        </tr>
-        {Object.entries(examples).map((item) => {
-          const [title, [Example, props]] = item;
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(examples).map((item) => {
+            const [title, [Example, props]] = item;
 
-          return (
-            <tr>
-              <td>{title}</td>
-              <td>
-                <Example {...props} />
-              </td>
-            </tr>
-          );
-        })}
+            return (
+              <tr key={randomId()}>
+                <td>{title}</td>
+                <td>
+                  <Example {...props} />
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
