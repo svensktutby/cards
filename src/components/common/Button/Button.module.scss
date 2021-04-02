@@ -36,8 +36,7 @@ $tr-time: $transition-time;
   background-color: $default-color;
   border-color: $default-color;
 
-  &:hover:not(:disabled),
-  &:focus {
+  &:hover:not(:disabled) {
     background-color: lighten($default-color, 5%);
     border-color: lighten($default-color, 10%);
   }
@@ -51,8 +50,7 @@ $tr-time: $transition-time;
   background-color: $error-color;
   border-color: $error-color;
 
-  &:hover:not(:disabled),
-  &:focus {
+  &:hover:not(:disabled) {
     background-color: lighten($error-color, 5%);
     border-color: lighten($error-color, 10%);
   }

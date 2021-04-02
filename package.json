@@ -1,12 +1,12 @@
 {
-  "name": "personal-project",
+  "name": "cards",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/svensktutby/personal-project.git"
+    "url": "git+https://github.com/svensktutby/cards.git"
   },
-  "homepage": "https://svensktutby.github.io/personal-project",
+  "homepage": "https://svensktutby.github.io/cards",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

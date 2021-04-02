@@ -1,12 +1,12 @@
 import React, { FC, ElementType } from 'react';
 
+import { Test } from './Test';
 import { Preloader } from '../../common/Preloader';
 import { Button } from '../../common/Button';
 import { InputText } from '../../common/InputText';
 import { InputCheckbox } from '../../common/InputCheckbox';
 import { InputRadio } from '../../common/InputRadio';
 import { Select } from '../../common/Select';
-import { Test } from './Test';
 
 type ExampleType = [ElementType, Record<string, unknown>];
 export type ExamplesType = Record<string, ExampleType>;
