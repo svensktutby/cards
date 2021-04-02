@@ -5,7 +5,7 @@ import React, {
   FC,
 } from 'react';
 
-import s from './Checkbox.module.scss';
+import s from './InputCheckbox.module.scss';
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -17,7 +17,7 @@ type PropsType = DefaultInputPropsType & {
   labelClassName?: string;
 };
 
-export const Checkbox: FC<PropsType> = ({
+export const InputCheckbox: FC<PropsType> = ({
   type,
   onChange,
   onChangeChecked,

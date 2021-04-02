@@ -6,7 +6,7 @@ import React, {
   FC,
 } from 'react';
 
-import s from './Input.module.scss';
+import s from './InputText.module.scss';
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -20,7 +20,7 @@ type PropsType = DefaultInputPropsType & {
   errorClassName?: string;
 };
 
-export const Input: FC<PropsType> = ({
+export const InputText: FC<PropsType> = ({
   type,
   onChange,
   onChangeText,
