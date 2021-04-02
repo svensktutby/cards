@@ -11,9 +11,9 @@ export const App: FC = () => {
       <div className={s.app}>
         <Header />
 
-        <div className={s.container}>
+        <main className={s.container}>
           <Routes />
-        </div>
+        </main>
       </div>
     </Router>
   );

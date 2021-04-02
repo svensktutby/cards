@@ -6,7 +6,7 @@ import { Login } from '../pages/Login';
 import { Registration } from '../pages/Registration';
 import { RecoveryPassword } from '../pages/RecoveryPassword';
 import { NewPassword } from '../pages/NewPassword';
-import { Test } from '../pages/Test';
+import { TestContainer } from '../pages/Test/TestContainer';
 import { Error404 } from '../pages/Error404';
 
 export const PATH = {
@@ -33,7 +33,7 @@ export const Routes: FC = () => {
           render={() => <RecoveryPassword />}
         />
         <Route path={PATH.NEW_PASSWORD} render={() => <NewPassword />} />
-        <Route path={PATH.TEST} render={() => <Test />} />
+        <Route path={PATH.TEST} render={() => <TestContainer />} />
         <Route path={PATH.ERROR_404} render={() => <Error404 />} />
 
         <Redirect from="*" to={PATH.ERROR_404} />
