@@ -4,7 +4,7 @@ $error-font-size: $font-size-sm;
 $text-color: #495057;
 $bg-color: $white;
 $border-color: $gray-lighter;
-$border-color-focus: lighten($theme-color, 40%);
+$border-color-focus: $theme-color;
 $tr-time: $transition-time;
 
 .inputWrapper {
