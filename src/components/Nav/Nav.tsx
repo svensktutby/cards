@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 import s from './Nav.module.scss';
 import { randomId } from '../../utils/randomId';
-import { capitalizeFirstLetter } from '../../utils/textTransform';
+import { NavLinkType } from './NavContainer';
 
 type PropsType = {
-  navLinks: Array<string>;
+  navLinks: Array<NavLinkType>;
 };
 
 export const Nav: FC<PropsType> = ({ navLinks }) => {
@@ -16,7 +16,7 @@ export const Nav: FC<PropsType> = ({ navLinks }) => {
 
       <div className={s.nav__content}>
         <ul className={s.nav__items}>
-          {navLinks.map((link) => (
+          {navLinks.map(({ link, title }) => (
             <li key={randomId()} className={s.nav__item}>
               <NavLink
                 className={s.nav__item_link}
@@ -24,9 +24,7 @@ export const Nav: FC<PropsType> = ({ navLinks }) => {
                 to={link}
                 activeClassName={s.nav__item_link_active}
               >
-                {capitalizeFirstLetter(
-                  link.slice(1, link.length).replace(/-/, ' '),
-                )}
+                {title}
               </NavLink>
             </li>
           ))}

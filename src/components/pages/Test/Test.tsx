@@ -22,7 +22,7 @@ export const Test: FC<PropsType> = ({ examples }) => {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(examples).map((item) => {
+          {examples.map((item) => {
             const [title, [Example, props]] = item;
 
             return (

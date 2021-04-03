@@ -8,3 +8,6 @@ export const capitalizeFirstLetter = (str: string): string =>
 
 export const concatString = (str: string, char: string = ''): string =>
   str.replace(/\s/g, char);
+
+export const transformLinkToTitle = (str: string): string =>
+  str.slice(1, str.length).replace(/-/g, ' ');

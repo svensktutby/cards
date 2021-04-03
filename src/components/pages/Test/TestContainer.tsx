@@ -8,10 +8,7 @@ import { InputCheckbox } from '../../common/InputCheckbox';
 import { InputRadio } from '../../common/InputRadio';
 import { Select } from '../../common/Select';
 
-type ExampleType = [ElementType, Record<string, unknown>];
-export type ExamplesType = Record<string, ExampleType>;
-
-const examples: ExamplesType = {
+const exampleLibrary: ExampleLibraryType = {
   preloader: [Preloader, { text: 'Loading' }],
   button: [Button, { children: 'Test' }],
   buttonError: [Button, { children: 'Error', error: true }],
@@ -32,6 +29,12 @@ const examples: ExamplesType = {
   ],
 };
 
+const examples: ExamplesType = Object.entries(exampleLibrary);
+
 export const TestContainer: FC = () => {
   return <Test examples={examples} />;
 };
+
+type ExampleType = [ElementType, Record<string, unknown>];
+type ExampleLibraryType = Record<string, ExampleType>;
+export type ExamplesType = [string, ExampleType][];
