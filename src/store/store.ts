@@ -8,9 +8,8 @@ import {
 } from 'redux';
 import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk';
 
+import { DEV } from '../config';
 import { appReducer } from '../components/App/appReducer';
-
-const DEV = process.env.NODE_ENV !== 'production';
 
 const rootReducer = combineReducers({
   app: appReducer,
