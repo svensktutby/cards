@@ -1,0 +1,9 @@
+@import "src/common/ui/styles/base/variables";
+
+.main {
+  position: relative;
+}
+
+.container {
+  composes: container from "../../../../common/ui/styles/container.module.scss";
+}

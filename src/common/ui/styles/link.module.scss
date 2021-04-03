@@ -1,0 +1,26 @@
+@import "src/common/ui/styles/base/variables";
+
+.link {
+  color: $link-color;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: 0;
+
+  transition: color $transition-time;
+
+  &:focus {
+    outline: 0;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus {
+      color: $link-color-hover;
+    }
+
+    &:active {
+      color: $link-color-active;
+    }
+  }
+}
