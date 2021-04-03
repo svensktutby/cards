@@ -6,7 +6,7 @@ export enum ActionType {
 
 const initialState: StateType = {};
 
-export const loginReducer = (
+export const profileReducer = (
   state = initialState,
   action: ActionsType,
 ): StateType => {

@@ -9,10 +9,18 @@ import {
 import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk';
 
 import { DEV } from '../../config';
-import { loginReducer } from '../../pages/login/bll/loginReducer';
+import { loginReducer as login } from '../../pages/login/bll/loginReducer';
+import { registrationReducer as register } from '../../pages/registration/bll/registrationReducer';
+import { recoveryPassReducer as recoveryPass } from '../../pages/recoveryPass/bll/recoveryPassReducer';
+import { setPassReducer as setPass } from '../../pages/setPass/bll/setPassReducer';
+import { profileReducer as profile } from '../../pages/profile/bll/profileReducer';
 
 const rootReducer = combineReducers({
-  login: loginReducer,
+  login,
+  register,
+  recoveryPass,
+  setPass,
+  profile,
 });
 
 // @ts-ignore next line
@@ -27,6 +35,13 @@ export const store = createStore(rootReducer, enhancedStore);
 
 /** Types */
 export type RootStateType = ReturnType<typeof rootReducer>;
+
+export type InferActionsType<T> = T extends Record<
+  string,
+  (...args: never[]) => infer U
+>
+  ? U
+  : never;
 
 export type ThunkType<
   A extends Action = Action,
