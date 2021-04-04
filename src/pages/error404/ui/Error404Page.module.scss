@@ -58,6 +58,6 @@ $link-text-color: $gray-darker;
 }
 
 .link {
-  composes: link from '../../../common/ui/styles/link.module.scss';
+  composes: link from '../../../common/ui/Link/Link.module.scss';
   color: $link-text-color;
 }
