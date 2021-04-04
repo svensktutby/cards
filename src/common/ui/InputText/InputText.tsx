@@ -14,6 +14,7 @@ type DefaultInputPropsType = DetailedHTMLProps<
 >;
 
 type PropsType = DefaultInputPropsType & {
+  type?: 'text' | 'email' | 'password';
   onChangeText?: (value: string) => void;
   onEnter?: () => void;
   error?: string;
@@ -21,7 +22,7 @@ type PropsType = DefaultInputPropsType & {
 };
 
 export const InputText: FC<PropsType> = ({
-  type,
+  type = 'text',
   onChange,
   onChangeText,
   onKeyPress,
@@ -46,7 +47,7 @@ export const InputText: FC<PropsType> = ({
   const finalErrorClassName = `${s.error} ${
     errorClassName ? errorClassName : ''
   }`;
-  const finalInputClassName = `${s.input} ${error && s.errorInput} ${
+  const finalInputClassName = `${s.input} ${error ? s.errorInput : ''} ${
     className ? className : ''
   }`;
 
@@ -55,7 +56,7 @@ export const InputText: FC<PropsType> = ({
       {error && <span className={finalErrorClassName}>{error}</span>}
 
       <input
-        type="text"
+        type={type}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
         className={finalInputClassName}
