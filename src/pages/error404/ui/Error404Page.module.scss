@@ -1,7 +1,7 @@
 @import "src/common/ui/styles/base/variables";
 $bg-color: lighten($theme-color, 10%);
 $text-color: $white;
-$footer-text-color: $gray-lightest;
+$link-text-color: $gray-darker;
 
 .page {
   position: fixed;
@@ -54,27 +54,10 @@ $footer-text-color: $gray-lightest;
 
 .footerText {
   font-size: 1.2rem;
-  color: $footer-text-color;
+  color: $text-color;
 }
 
 .link {
-  color: $text-color;
-  text-decoration: none;
-
-  transition: color $transition-time;
-
-  &:focus {
-    outline: none;
-  }
-
-  @media (hover: hover) {
-    &:hover,
-    &:focus {
-      color: darken($text-color, 20%);
-    }
-
-    &:active {
-      color: darken($text-color, 30%);
-    }
-  }
+  composes: link from '../../../common/ui/styles/link.module.scss';
+  color: $link-text-color;
 }
