@@ -1,6 +1,6 @@
 import React, { AnchorHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
-import s from './Link.module.scss';
+import s from './LinkNative.module.scss';
 
 type DefaultAnchorPropsType = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -9,7 +9,11 @@ type DefaultAnchorPropsType = DetailedHTMLProps<
 
 type PropsType = DefaultAnchorPropsType;
 
-export const Link: FC<PropsType> = ({ className, children, ...restProps }) => {
+export const LinkNative: FC<PropsType> = ({
+  className,
+  children,
+  ...restProps
+}) => {
   const finalClassName = `${s.link} ${className ? className : ''}`;
 
   return (

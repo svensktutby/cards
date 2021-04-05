@@ -3,7 +3,7 @@ import React, { FC, ElementType } from 'react';
 import { unCamelCase } from '../../../utils/textTransform';
 import { Test } from './Test';
 import { Preloader } from '../../../common/ui/Preloader';
-import { Link } from '../../../common/ui/Link';
+import { LinkNative } from '../../../common/ui/LinkNative';
 import { Button } from '../../../common/ui/Button';
 import { InputText } from '../../../common/ui/InputText';
 import { InputCheckbox } from '../../../common/ui/InputCheckbox';
@@ -12,11 +12,13 @@ import { Select } from '../../../common/ui/Select';
 
 const exampleLibrary: ExampleLibraryType = {
   preloader: [Preloader, { text: 'Loading' }],
-  link: [Link, { href: '/', children: 'Link' }],
-  button: [Button, { children: 'Test' }],
+  link: [LinkNative, { href: '/', children: 'Hover me' }],
+  button: [Button, { children: 'Click me' }],
   buttonError: [Button, { children: 'Error', error: true }],
   inputText: [InputText, {}],
-  inputTextError: [InputText, { error: 'some error' }],
+  inputEmail: [InputText, { type: 'email' }],
+  inputPassword: [InputText, { type: 'password' }],
+  inputTextError: [InputText, { error: 'an error' }],
   inputCheckbox: [InputCheckbox, { children: 'Check me' }],
   inputRadio: [
     InputRadio,

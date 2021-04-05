@@ -6,4 +6,9 @@
   align-items: center;
   justify-content: center;
   min-height: 80vh;
+
+  h2 {
+    color: $theme-color;
+    text-transform: uppercase;
+  }
 }
