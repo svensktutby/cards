@@ -1,0 +1,7 @@
+.form {
+  composes: form from "../../../../common/ui/styles/form.module.scss";
+}
+
+.link {
+  composes: link from "../../../../common/ui/LinkNative/LinkNative.module.scss";
+}

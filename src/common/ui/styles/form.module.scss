@@ -1,0 +1,22 @@
+@import "src/common/ui/styles/base/variables";
+
+.form {
+  min-width: 280px;
+
+  & > div {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 18px;
+    }
+  }
+
+  & > a {
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+
+  & > button {
+    width: 100%;
+  }
+}
