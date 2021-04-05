@@ -1,6 +1,8 @@
 @import "src/common/ui/styles/base/variables";
 
 .header {
+  position: relative;
+
   height: $header-height;
 
   background-color: $theme-color;
@@ -8,8 +10,6 @@
 
 .container {
   composes: container from "../../../../common/ui/styles/container.module.scss";
-
-  position: relative;
 
   height: $header-height;
   padding-top: 0;

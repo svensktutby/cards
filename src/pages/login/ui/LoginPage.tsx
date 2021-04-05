@@ -4,8 +4,8 @@ import s from './LoginPage.module.scss';
 
 export const LoginPage: FC = () => {
   return (
-    <div className={s.page}>
-      <div>Login</div>
-    </div>
+    <section className={s.page}>
+      <h2>Login</h2>
+    </section>
   );
 };

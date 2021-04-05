@@ -4,8 +4,8 @@ import s from './SetPassPage.module.scss';
 
 export const SetPassPage: FC = () => {
   return (
-    <div className={s.page}>
-      <div>Set New Password</div>
-    </div>
+    <section className={s.page}>
+      <h2>Set New Password</h2>
+    </section>
   );
 };

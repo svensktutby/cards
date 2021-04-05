@@ -4,8 +4,8 @@ import s from './ProfilePage.module.scss';
 
 export const ProfilePage: FC = () => {
   return (
-    <div className={s.page}>
-      <div>Profile</div>
-    </div>
+    <section className={s.page}>
+      <h2>Profile</h2>
+    </section>
   );
 };

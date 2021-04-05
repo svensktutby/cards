@@ -1,5 +1,3 @@
-@import "src/common/ui/styles/base/variables";
-
-.title {
-  text-align: center;
+.page {
+  composes: page from "../../../common/ui/styles/page.module.scss";
 }
