@@ -4,8 +4,8 @@ import s from './RegistrationPage.module.scss';
 
 export const RegistrationPage: FC = () => {
   return (
-    <div className={s.page}>
-      <div>Registration</div>
-    </div>
+    <section className={s.page}>
+      <h2>Registration</h2>
+    </section>
   );
 };

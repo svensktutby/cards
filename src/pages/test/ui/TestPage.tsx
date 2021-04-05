@@ -5,10 +5,10 @@ import { TestContainer } from './TestContainer';
 
 export const TestPage: FC = () => {
   return (
-    <div>
-      <h1 className={s.title}>Common components:</h1>
+    <section className={s.page}>
+      <h2>Common components:</h2>
 
       <TestContainer />
-    </div>
+    </section>
   );
 };

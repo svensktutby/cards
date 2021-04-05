@@ -4,8 +4,8 @@ import s from './RecoveryPassPage.module.scss';
 
 export const RecoveryPassPage: FC = () => {
   return (
-    <div className={s.page}>
-      <div>Recovery Password</div>
-    </div>
+    <section className={s.page}>
+      <h2>Recovery Password</h2>
+    </section>
   );
 };
