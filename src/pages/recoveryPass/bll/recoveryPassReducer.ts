@@ -1,31 +1,38 @@
-import { ThunkType } from '../../../main/bll/store';
-
-export enum ActionType {
-  SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
-}
-
-const initialState: StateType = {};
+import {
+  RecoveryPassActionsType,
+  RecoveryPassActionType,
+} from './recoveryPassActions';
+import {
+  recoveryPassInitState,
+  RecoveryPassStateType,
+} from './recoveryPassState';
 
 export const recoveryPassReducer = (
-  state = initialState,
-  action: ActionsType,
-): StateType => {
+  state = recoveryPassInitState,
+  action: RecoveryPassActionsType,
+): RecoveryPassStateType => {
   switch (action.type) {
-    case ActionType.SET_LOADING:
-      return { ...state };
+    case RecoveryPassActionType.FETCH_EMAIL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        success: false,
+        error: '',
+        email: action.payload.email,
+      };
+
+    case RecoveryPassActionType.FETCH_EMAIL_SUCCESS:
+      return { ...state, loading: false, success: true, error: '' };
+
+    case RecoveryPassActionType.FETCH_EMAIL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.error,
+      };
 
     default:
       return state;
   }
 };
-
-/** Actions */
-const setLoading = () => ({ type: ActionType.SET_LOADING } as const);
-
-/** Thunks */
-export const loginTC = (): ThunkType<ActionsType> => async (dispatch) => {};
-
-/** Types */
-type StateType = {};
-
-type ActionsType = ReturnType<typeof setLoading>;

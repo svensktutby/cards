@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   capitalizeFirstLetter,
@@ -6,6 +7,7 @@ import {
 } from '../../../../utils/textTransform';
 import { PATH } from '../../../../main/ui/App/Routes';
 import { RecoveryPassForm } from './RecoveryPassForm';
+import { recoveryPassActions } from '../../bll/recoveryPassActions';
 
 export const RecoveryPassFormContainer: FC = () => {
   const { LOGIN } = PATH;
@@ -15,7 +17,13 @@ export const RecoveryPassFormContainer: FC = () => {
     title: capitalizeFirstLetter(transformLinkToTitle(LOGIN)),
   };
 
-  return <RecoveryPassForm loginLink={loginLink} />;
+  const dispatch = useDispatch();
+
+  const sendEmail = (email: string) => {
+    dispatch(recoveryPassActions.setRequest(email));
+  };
+
+  return <RecoveryPassForm loginLink={loginLink} sendEmail={sendEmail} />;
 };
 
 export type LoginLinkType = {
