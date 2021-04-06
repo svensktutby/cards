@@ -32,11 +32,11 @@ export const RecoveryPassForm: FC<PropsType> = ({
         value={emailValue}
       />
 
+      <Button type="submit">Submit</Button>
+
       <Link to={link} className={s.link}>
         {title}
       </Link>
-
-      <Button type="submit">Submit</Button>
     </form>
   );
 };
