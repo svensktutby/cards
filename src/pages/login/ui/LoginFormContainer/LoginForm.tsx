@@ -4,16 +4,15 @@ import s from './LoginForm.module.scss';
 import { InputText } from '../../../../common/ui/InputText';
 import { Link } from 'react-router-dom';
 import { Button } from '../../../../common/ui/Button';
-import { LoginLinksType } from './LoginFormContainer';
+import { LoginLinkType } from './LoginFormContainer';
 import { InputCheckbox } from '../../../../common/ui/InputCheckbox';
+import { randomId } from '../../../../utils/randomId';
 
 type PropsType = {
-  loginLinks: LoginLinksType;
+  loginLinks: LoginLinkType[];
 };
 
-export const LoginForm: FC<PropsType> = ({ loginLinks: { links, titles }  }) => {
-  const [ForgotPassTitle, regTitle] = titles;
-  const [recoveryLink, regLink] = links;
+export const LoginForm: FC<PropsType> = ({ loginLinks }) => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form submitted');
@@ -25,15 +24,14 @@ export const LoginForm: FC<PropsType> = ({ loginLinks: { links, titles }  }) => 
       <InputText placeholder={'Password'} type={'password'} />
       <InputCheckbox type={'checkbox'}>Remember me</InputCheckbox>
 
-      <Button type="submit">Submit</Button>
+      <Button type='submit'>Submit</Button>
 
       <div className={s.linksForm}>
-        <Link to={recoveryLink} className={s.link}>
-          {ForgotPassTitle}
-        </Link>
-        <Link to={regLink} className={s.link}>
-          {regTitle}
-        </Link>
+        {loginLinks.map(({ link, title }) => (
+          <Link key={randomId()} to={link} className={s.link}>
+            {title}
+          </Link>
+        ))}
       </div>
     </form>
   );
