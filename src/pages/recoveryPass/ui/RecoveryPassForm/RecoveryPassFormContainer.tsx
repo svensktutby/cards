@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import {
   capitalizeFirstLetter,
   transformLinkToTitle,
 } from '../../../../utils/textTransform';
 import { PATH } from '../../../../main/ui/App/Routes';
 import { RecoveryPassForm } from './RecoveryPassForm';
-import { recoveryPassActions } from '../../bll/recoveryPassActions';
+import { sendEmailAsync } from '../../bll/recoveryPassThunk';
 
 export const RecoveryPassFormContainer: FC = () => {
-  const { LOGIN } = PATH;
+  const { LOGIN, SET_PASS } = PATH;
 
   const loginLink: LoginLinkType = {
     link: LOGIN,
@@ -19,11 +20,26 @@ export const RecoveryPassFormContainer: FC = () => {
 
   const dispatch = useDispatch();
 
+  const loading = useTypedSelector<boolean>(
+    (state) => state.recoveryPass.loading,
+  );
+  const success = useTypedSelector<boolean>(
+    (state) => state.recoveryPass.success,
+  );
+
   const sendEmail = (email: string) => {
-    dispatch(recoveryPassActions.setRequest(email));
+    dispatch(sendEmailAsync(email));
   };
 
-  return <RecoveryPassForm loginLink={loginLink} sendEmail={sendEmail} />;
+  return (
+    <RecoveryPassForm
+      loginLink={loginLink}
+      sendEmail={sendEmail}
+      loading={loading}
+      success={success}
+      redirectLink={SET_PASS}
+    />
+  );
 };
 
 export type LoginLinkType = {
