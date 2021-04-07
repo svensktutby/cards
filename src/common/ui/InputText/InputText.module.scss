@@ -81,7 +81,7 @@ $placeholder-color-error: rgba($error-color, 0.8);
     color: $placeholder-color;
   }
 
-  &:hover,
+  &:hover:not(:disabled),
   &:focus {
     color: $text-color;
 
@@ -108,7 +108,7 @@ $placeholder-color-error: rgba($error-color, 0.8);
       color: $placeholder-color-error;
     }
 
-    &:hover,
+    &:hover:not(:disabled),
     &:focus {
       border-color: $error-color;
       box-shadow: 0 0 0 0.2rem rgba($error-color, 0.25);
