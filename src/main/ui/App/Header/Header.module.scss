@@ -11,7 +11,97 @@
 .container {
   composes: container from "../../../../common/ui/styles/container.module.scss";
 
+  $container-padding: 30px;
+  $container-padding-sm: 15px;
+
   height: $header-height;
   padding-top: 0;
   padding-bottom: 0;
+
+  & > nav {
+    $btn-size-sm: 40px;
+
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%);
+
+    @media screen and (max-width: $screen-md) {
+      top: ($header-height - $btn-size-sm) / 2;
+      left: $container-padding;
+
+      width: $btn-size-sm;
+      height: $btn-size-sm;
+
+      transform: none;
+
+      & > div {
+        position: fixed;
+        z-index: 10;
+        top: 60px;
+        left: 0;
+
+        width: 0;
+        height: 0;
+
+        background-color: rgba(255, 255, 255, 0.9);
+        visibility: hidden;
+        opacity: 0;
+
+        transition: none !important;
+
+        &::before {
+          display: none;
+        }
+
+        & > ul {
+          width: 100%;
+          padding: 0;
+
+          & > li {
+            display: block;
+            padding-top: 20px;
+            padding-bottom: 19px;
+
+            font-size: 2rem;
+            line-height: initial;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+            @media screen and (max-width: $screen-md) and (orientation: landscape) {
+              padding-top: 6px;
+              padding-bottom: 5px;
+            }
+          }
+        }
+      }
+
+      & > label {
+        width: $btn-size-sm;
+        height: $btn-size-sm;
+        padding: 12px 9px;
+
+        &:before,
+        &:after {
+          width: 24px;
+        }
+      }
+
+      & > input:checked ~ div {
+        width: 100% !important;
+        height: 100%;
+
+        visibility: visible;
+        opacity: 1;
+
+        transition: opacity $transition-time * 3 !important;
+      }
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      left: $container-padding-sm;
+    }
+  }
 }

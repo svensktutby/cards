@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import s from './Nav.module.scss';
@@ -10,19 +10,31 @@ type PropsType = {
 };
 
 export const Nav: FC<PropsType> = ({ navLinks }) => {
+  const [open, setOpen] = useState(false);
+
+  const closeMenuHandler = () => {
+    setOpen(!open);
+  };
+
   return (
     <nav className={s.nav}>
-      <input className={s.nav__control} type="checkbox" id="menu-cb" />
+      <input
+        checked={open}
+        className={s.navControl}
+        type="checkbox"
+        id="menu-cb"
+        onChange={closeMenuHandler}
+      />
 
-      <div className={s.nav__content}>
-        <ul className={s.nav__items}>
+      <div className={s.navContent}>
+        <ul className={s.navItems} onClick={closeMenuHandler}>
           {navLinks.map(({ link, title }) => (
-            <li key={randomId()} className={s.nav__item}>
+            <li key={randomId()} className={s.navItem}>
               <NavLink
-                className={s.nav__item_link}
+                className={s.navItemLink}
                 exact
                 to={link}
-                activeClassName={s.nav__item_link_active}
+                activeClassName={s.navItemLinkActive}
               >
                 {title}
               </NavLink>
@@ -30,7 +42,7 @@ export const Nav: FC<PropsType> = ({ navLinks }) => {
           ))}
         </ul>
       </div>
-      <label className={s.nav__btn} htmlFor="menu-cb" />
+      <label className={s.navBtn} htmlFor="menu-cb" />
     </nav>
   );
 };
