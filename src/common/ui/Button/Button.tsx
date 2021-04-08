@@ -9,12 +9,20 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 
 type PropsType = DefaultButtonPropsType & {
   error?: boolean;
+  large?: boolean;
+  small?: boolean;
 };
 
-export const Button: FC<PropsType> = ({ error, className, ...restProps }) => {
-  const finalClassName = `${s.btn} ${error ? s.error : s.default} ${
-    className ? className : ''
-  }`;
+export const Button: FC<PropsType> = ({
+  error,
+  large,
+  small,
+  className,
+  ...restProps
+}) => {
+  const finalClassName = `${s.btn} ${large ? s.large : ''} ${
+    small ? s.small : ''
+  } ${error ? s.error : s.default} ${className ? className : ''}`;
 
   return <button className={finalClassName} {...restProps} />;
 };
