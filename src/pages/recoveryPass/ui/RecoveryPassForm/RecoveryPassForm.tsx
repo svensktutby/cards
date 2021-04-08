@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from 'react';
+import React, { FC, FormEvent, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import s from './RecoveryPassForm.module.scss';
@@ -10,20 +10,32 @@ import { Preloader } from '../../../../common/ui/Preloader';
 type PropsType = {
   loginLink: LoginLinkType;
   sendEmail: (email: string) => void;
+  closeMessage: (error: string) => void;
+  setSuccess: (success: boolean) => void;
   loading: boolean;
   success: boolean;
-  error?: string;
+  error: string;
   redirectLink: string;
 };
 
 export const RecoveryPassForm: FC<PropsType> = ({
   loginLink: { link, title },
   sendEmail,
+  closeMessage,
+  setSuccess,
   loading,
   success,
+  error,
   redirectLink,
 }) => {
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    if (success) {
+      setEmail('');
+      setSuccess(false);
+    }
+  }, [success, setSuccess]);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,16 +45,24 @@ export const RecoveryPassForm: FC<PropsType> = ({
     }
   };
 
-  if (success) {
-    setEmail('');
+  const closeMessageHandler = () => {
+    closeMessage('');
+  };
 
+  if (success) {
     return <Redirect to={redirectLink} />;
   }
 
   return (
     <form className={s.form} onSubmit={submitHandler}>
-      <div className={s.preloaderWrapper}>
+      <div className={s.messageWrapper}>
         {loading && <Preloader text="Sending..." />}
+
+        {error && (
+          <div className={s.errorMessage} onClick={closeMessageHandler}>
+            {error}
+          </div>
+        )}
       </div>
 
       <InputText

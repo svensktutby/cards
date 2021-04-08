@@ -10,26 +10,27 @@ describe('recoveryPass reducer', () => {
       loading: false,
       success: false,
       error: '',
-      email: '',
     };
   });
 
   it('should handle setRequest', () => {
-    const action = recoveryPassActions.setRequest('test@mail.com');
+    const action = recoveryPassActions.setLoading(true);
 
     const newState = recoveryPassReducer(state, action);
 
     expect(newState.loading).toBeTruthy();
-    expect(newState.email).toBe('test@mail.com');
+    expect(newState.success).toBeFalsy();
+    expect(newState.error).toBe('');
   });
 
   it('should handle setSuccess', () => {
-    const action = recoveryPassActions.setSuccess();
+    const action = recoveryPassActions.setSuccess(true);
 
     const newState = recoveryPassReducer(state, action);
 
     expect(newState.loading).toBeFalsy();
     expect(newState.success).toBeTruthy();
+    expect(newState.error).toBe('');
   });
 
   it('should handle setError', () => {
@@ -38,6 +39,7 @@ describe('recoveryPass reducer', () => {
     const newState = recoveryPassReducer(state, action);
 
     expect(newState.loading).toBeFalsy();
+    expect(newState.success).toBeFalsy();
     expect(newState.error).toBe('an error');
   });
 });

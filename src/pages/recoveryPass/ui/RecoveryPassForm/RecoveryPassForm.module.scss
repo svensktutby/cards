@@ -1,9 +1,19 @@
+@import "src/common/ui/styles/base/variables";
+
 .form {
   composes: form from "../../../../common/ui/styles/form.module.scss";
 }
 
-.preloaderWrapper {
+.messageWrapper {
+  max-width: 280px;
   min-height: 50px;
+}
+
+.errorMessage {
+  padding: 10px;
+
+  text-align: center;
+  color: $color-danger;
 }
 
 .link {
