@@ -1,4 +1,5 @@
 import { API } from '../../../main/dal/api';
+import { message } from './messageTemplate';
 
 export type RequestDataType = {
   email: string;
@@ -18,9 +19,7 @@ export const recoveryPassApi = {
     return API.post<ResponseDataType>(`auth/forgot`, {
       email,
       from: 'Andrei Shved  <svensk.tut.by@gmail.com>',
-      message: `<div style="background-color: #17a2b8; padding: 15px; font-size: 20px">
-                            password recovery link: <a href='https://svensktutby.github.io/cards/#/set-pass/$token$'>link</a>
-                      </div>`,
+      message,
     }).then((res) => res.data);
   },
 };
