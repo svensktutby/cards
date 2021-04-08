@@ -12,7 +12,7 @@ export const ErrorMessage: FC<PropsType> = ({ children, clickHandler }) => {
     <div className={s.message}>
       <p>{children}</p>
       {clickHandler && (
-        <Button error onClick={clickHandler}>
+        <Button small error onClick={clickHandler}>
           Close
         </Button>
       )}

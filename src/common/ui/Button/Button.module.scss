@@ -2,6 +2,9 @@
 $default-color: $theme-color;
 $error-color: $color-danger;
 $text-color: $white;
+$font-size: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-sm: 0.75rem;
 $tr-time: $transition-time;
 
 .btn {
@@ -10,7 +13,7 @@ $tr-time: $transition-time;
   padding: 8px 20px;
 
   font-weight: 400;
-  font-size: 16px;
+  font-size: $font-size;
   font-family: inherit;
   color: $text-color;
 
@@ -34,6 +37,18 @@ $tr-time: $transition-time;
   svg {
     fill: $text-color;
   }
+}
+
+.large {
+  padding: 10px 28px;
+
+  font-size: $font-size-lg;
+}
+
+.small {
+  padding: 6px 12px;
+
+  font-size: $font-size-sm;
 }
 
 .default {
