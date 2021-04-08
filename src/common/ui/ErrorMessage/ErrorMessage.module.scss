@@ -23,12 +23,6 @@ $tr-time: $transition-time;
     margin-top: 5px;
     overflow: hidden;
   }
-
-  & button {
-    padding: 6px 12px;
-
-    font-size: $font-size-sm;
-  }
 }
 
 @keyframes shake {
