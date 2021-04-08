@@ -12,19 +12,23 @@ export const recoveryPassReducer = (
   action: RecoveryPassActionsType,
 ): RecoveryPassStateType => {
   switch (action.type) {
-    case RecoveryPassActionType.FETCH_EMAIL_REQUEST:
+    case RecoveryPassActionType.SET_LOADING:
       return {
         ...state,
-        loading: true,
+        loading: action.payload.loading,
         success: false,
         error: '',
-        email: action.payload.email,
       };
 
-    case RecoveryPassActionType.FETCH_EMAIL_SUCCESS:
-      return { ...state, loading: false, success: true, error: '' };
+    case RecoveryPassActionType.SET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: action.payload.success,
+        error: '',
+      };
 
-    case RecoveryPassActionType.FETCH_EMAIL_FAILURE:
+    case RecoveryPassActionType.SET_ERROR:
       return {
         ...state,
         loading: false,

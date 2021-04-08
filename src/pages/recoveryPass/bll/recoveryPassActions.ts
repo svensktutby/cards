@@ -1,26 +1,29 @@
 import { InferActionsType } from '../../../main/bll/store';
 
 export enum RecoveryPassActionType {
-  FETCH_EMAIL_REQUEST = 'CARDS/RECOVERY_PASS/FETCH_EMAIL_REQUEST',
-  FETCH_EMAIL_SUCCESS = 'CARDS/RECOVERY_PASS/FETCH_EMAIL_SUCCESS',
-  FETCH_EMAIL_FAILURE = 'CARDS/RECOVERY_PASS/FETCH_EMAIL_FAILURE',
+  SET_LOADING = 'CARDS/RECOVERY_PASS/SET_LOADING',
+  SET_SUCCESS = 'CARDS/RECOVERY_PASS/SET_SUCCESS',
+  SET_ERROR = 'CARDS/RECOVERY_PASS/SET_ERROR',
 }
 
 export const recoveryPassActions = {
-  setRequest: (email: string) =>
+  setLoading: (loading: boolean) =>
     ({
-      type: RecoveryPassActionType.FETCH_EMAIL_REQUEST,
+      type: RecoveryPassActionType.SET_LOADING,
       payload: {
-        email,
+        loading,
       },
     } as const),
-  setSuccess: () =>
+  setSuccess: (success: boolean) =>
     ({
-      type: RecoveryPassActionType.FETCH_EMAIL_SUCCESS,
+      type: RecoveryPassActionType.SET_SUCCESS,
+      payload: {
+        success,
+      },
     } as const),
   setError: (error: string) =>
     ({
-      type: RecoveryPassActionType.FETCH_EMAIL_FAILURE,
+      type: RecoveryPassActionType.SET_ERROR,
       payload: {
         error,
       },
