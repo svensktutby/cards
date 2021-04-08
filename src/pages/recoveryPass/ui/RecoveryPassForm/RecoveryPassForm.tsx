@@ -6,6 +6,7 @@ import { InputText } from '../../../../common/ui/InputText';
 import { Button } from '../../../../common/ui/Button';
 import { LoginLinkType } from './RecoveryPassFormContainer';
 import { Preloader } from '../../../../common/ui/Preloader';
+import { ErrorMessage } from '../../../../common/ui/ErrorMessage';
 
 type PropsType = {
   loginLink: LoginLinkType;
@@ -59,9 +60,9 @@ export const RecoveryPassForm: FC<PropsType> = ({
         {loading && <Preloader text="Sending..." />}
 
         {error && (
-          <div className={s.errorMessage} onClick={closeMessageHandler}>
+          <ErrorMessage clickHandler={closeMessageHandler}>
             {error}
-          </div>
+          </ErrorMessage>
         )}
       </div>
 
