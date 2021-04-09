@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
 import { LoginForm } from './LoginForm';
 import { PATH } from '../../../../main/ui/App/Routes';
-import {
-  capitalizeFirstLetter,
-  transformLinkToTitle,
-} from '../../../../utils/textTransform';
+import { capitalizeFirstLetter, transformLinkToTitle } from '../../../../utils/textTransform';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { loginPageTC, setError, setSuccess } from '../../bll/loginReducer';
 
 export const LoginFormContainer: FC = () => {
-  const { RECOVERY_PASS } = PATH;
-  const { REGISTRATION } = PATH;
+  const dispatch = useDispatch();
+
+  const { RECOVERY_PASS, REGISTRATION, PROFILE } = PATH;
 
   const loginLinks: LoginLinkType[] = [
     {
@@ -20,7 +21,31 @@ export const LoginFormContainer: FC = () => {
       title: capitalizeFirstLetter(transformLinkToTitle(' Registration')),
     },
   ];
-  return <LoginForm loginLinks={loginLinks} />;
+
+  const success = useTypedSelector<boolean>(
+    (state) => state.login.success,
+  );
+  const error = useTypedSelector<string>((state) => state.login.error);
+
+  const sendLogin = (email: string, password: string, rememberMe: boolean) => {
+    dispatch(loginPageTC(email, password, rememberMe));
+  };
+
+  const setSuc = (success: boolean) => {
+    dispatch(setSuccess(success));
+  };
+  const closeMessage = (error: string) => {
+    dispatch(setError(error));
+  };
+
+  return <LoginForm loginLinks={loginLinks}
+                    sendLogin={sendLogin}
+                    success={success}
+                    setSuc={setSuc}
+                    error={error}
+                    closeMessage={closeMessage}
+                    redirectLink={PROFILE}
+  />;
 };
 
 export type LoginLinkType = {

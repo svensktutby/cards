@@ -1,4 +1,5 @@
 import { ThunkType } from '../../../main/bll/store';
+import { authAPI } from '../dal/loginApi';
 
 export enum loginActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
@@ -82,7 +83,18 @@ export const setError = (error: string) =>
   } as const);
 
 /** Thunks */
-export const loginTC = (): ThunkType<ActionsType> => async (dispatch) => {
+export const loginPageTC = (email: string, password: string, rememberMe: boolean): ThunkType<ActionsType> => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    let data = await authAPI.login(email, password, rememberMe);
+    dispatch(setUser(data));
+    dispatch(setSuccess(true));
+  } catch (e) {
+    const error = e.response
+      ? e.response.data.error
+      : (e.message + ', more details in the console');
+    dispatch(setError(error));
+  }
 };
 
 /** Types */
