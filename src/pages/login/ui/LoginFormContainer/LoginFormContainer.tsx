@@ -22,6 +22,9 @@ export const LoginFormContainer: FC = () => {
     },
   ];
 
+  const loading = useTypedSelector<boolean>(
+    (state) => state.login.loading,
+  );
   const success = useTypedSelector<boolean>(
     (state) => state.login.success,
   );
@@ -40,6 +43,7 @@ export const LoginFormContainer: FC = () => {
 
   return <LoginForm loginLinks={loginLinks}
                     sendLogin={sendLogin}
+                    loading={loading}
                     success={success}
                     setSuc={setSuc}
                     error={error}
