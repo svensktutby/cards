@@ -98,7 +98,7 @@ export const loginPageTC = (email: string, password: string, rememberMe: boolean
 };
 
 /** Types */
-type StateType = {
+export type StateType = {
   user: UserType;
   loading: boolean;
   success: boolean;
