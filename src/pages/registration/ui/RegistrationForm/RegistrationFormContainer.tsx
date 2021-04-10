@@ -7,6 +7,7 @@ import {
 import {PATH} from '../../../../main/ui/App/Routes';
 import {RegistrationForm} from "./RegistrationForm";
 import {useDispatch} from "react-redux";
+import {registrationTC} from "../../bll/registrationReducer";
 
 
 
@@ -27,8 +28,12 @@ export const RegistrationFormContainer: FC = () => {
     const setRepeatPassCallback = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => setRepeatPass(e.currentTarget.value),
         [setRepeatPass]
-    )
+    );
     const dispatch = useDispatch();
+    const singUp = useCallback(
+        () => dispatch(registrationTC(email, password, repeatPass)),
+        [email, password, repeatPass, dispatch]
+    )
 
 
     const loginLink: LoginLinkType = {
@@ -40,6 +45,7 @@ export const RegistrationFormContainer: FC = () => {
         email={email} setEmail={setEmailCallback}
         password={password} setPassword={setPasswordCallback}
         repeatPass={repeatPass} setRepeatPass={setRepeatPassCallback}
+        singUp={singUp}
         loginLink={loginLink}/>;
 };
 

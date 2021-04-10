@@ -1,4 +1,5 @@
 import { ThunkType } from '../../../main/bll/store';
+import {authAPI} from "../../../main/dal/api";
 
 export enum ActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
@@ -20,7 +21,7 @@ export const registrationReducer = (
     case ActionType.SET_LOADING:
       return {
           ...state ,
-          loading: action.payload.loading,
+          loading: action.loading,
           success: false,
           error: '',
       };
@@ -28,7 +29,7 @@ export const registrationReducer = (
           return {
               ...state ,
               loading: false,
-              success: action.payload.success,
+              success: action.success,
               error: '',
           };
       case ActionType.SET_ERROR:
@@ -36,7 +37,7 @@ export const registrationReducer = (
               ...state ,
               loading: false,
               success: false,
-              error: action.payload.error,
+              error: action.error,
           };
 
     default:
@@ -47,33 +48,29 @@ export const registrationReducer = (
 /** Actions */
 export const setLoading = (loading: boolean) => ({
     type: ActionType.SET_LOADING,
-    payload: {
         loading,
-    } } as const);
+     } as const);
 export const setSuccess = (success: boolean) => ({
     type: ActionType.SET_SUCCESS,
-    payload: {
         success,
-    } } as const);
+     } as const);
 export const setError = (error: string) => ({
     type: ActionType.SET_ERROR,
-    payload: {
-        error,
-    } } as const);
+    error,
+     } as const);
 
 /** Thunks */
 export const registrationTC = (email: string, password: string, repeatPass: string): ThunkType<ActionsType> => async (dispatch) => {
-    // try {
-    //     dispatch(setLoading(true));
-    //     const response = await authAPI.registration(email, password, repeatPassword);
-    //     dispatch(setSuccess(response.success));
-    //     dispatch(setLoading(false))
-    // }
-    // catch (error) {
-    //     dispatch(setSuccess(false));
-    //     dispatch(setLoading(false));
-    //
-    // }
+    try {
+        dispatch(setLoading(true));
+        const response = await authAPI.registration(email, password);
+        dispatch(setSuccess(response.success));
+        dispatch(setLoading(false));
+    }
+    catch (e) {
+        dispatch(setSuccess(false));
+        dispatch(setError(e));
+    }
 };
 
 /** Types */

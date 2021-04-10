@@ -15,6 +15,7 @@ type PropsType = {
     repeatPass: string;
     setRepeatPass: (repeatPass:  ChangeEvent<HTMLInputElement>) => void;
 
+    singUp: () => void
     loginLink: LoginLinkType;
 };
 
@@ -23,6 +24,7 @@ export const RegistrationForm: FC<PropsType> = ({
                                                     email, setEmail,
                                                     password, setPassword,
                                                     repeatPass, setRepeatPass,
+                                                    singUp
 }) => {
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,7 +49,7 @@ export const RegistrationForm: FC<PropsType> = ({
                        onChange={setRepeatPass}
             />
 
-            <Button type="submit" >Sing Up</Button>
+            <Button type="submit" onClick={singUp} >Sing Up</Button>
 
             <Link to={link} className={s.link}>
                 {title}
