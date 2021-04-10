@@ -11,5 +11,15 @@ export const API = axios.create({
   withCredentials: true,
 });
 
+export type RegistrationType = {
+  success: boolean;
+  error: string;
+}
 
+export const authAPI = {
+    registration(email: string, password: string) {
+        return API.post<RegistrationType>(`auth/login`, { email, password })
+            .then(response => response.data);
+    },
+};
 
