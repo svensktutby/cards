@@ -33,8 +33,8 @@ export const RecoveryPassFormContainer: FC = () => {
     dispatch(sendEmailAsync(email));
   };
 
-  const closeMessage = (error: string) => {
-    dispatch(recoveryPassActions.setError(error));
+  const closeMessage = () => {
+    dispatch(recoveryPassActions.setError(''));
   };
 
   const setSuccess = (success: boolean) => {
