@@ -34,6 +34,7 @@ export const Nav: FC<PropsType> = ({ navLinks }) => {
                 className={s.navItemLink}
                 exact
                 to={link}
+                replace
                 activeClassName={s.navItemLinkActive}
               >
                 {title}
