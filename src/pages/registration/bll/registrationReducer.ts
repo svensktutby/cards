@@ -1,5 +1,7 @@
 import { ThunkType } from '../../../main/bll/store';
-import {authAPI} from "../../../main/dal/api";
+import {authAPI} from "../dall/api";
+
+
 
 export enum ActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
