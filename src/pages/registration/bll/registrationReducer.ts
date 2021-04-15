@@ -1,5 +1,7 @@
 import { ThunkType } from '../../../main/bll/store';
-import {authAPI} from "../../../main/dal/api";
+import {authAPI} from "../dall/api";
+
+
 
 export enum ActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
@@ -63,12 +65,19 @@ export const setError = (error: string) => ({
 export const registrationTC = (email: string, password: string, repeatPass: string): ThunkType<ActionsType> => async (dispatch) => {
     try {
         dispatch(setLoading(true));
-        const response = await authAPI.registration(email, password);
-        dispatch(setSuccess(response.success));
-        dispatch(setLoading(false));
+
+        if (password !== repeatPass) dispatch(setError('Password does not much'));
+        else {
+            const response = await authAPI.registration(email, password);
+            if(response.error) {
+                dispatch(setError(response.error))
+            } else {
+                dispatch(setSuccess(true))
+            }
+        }
+
     }
     catch (e) {
-        dispatch(setSuccess(false));
         dispatch(setError(e));
     }
 };

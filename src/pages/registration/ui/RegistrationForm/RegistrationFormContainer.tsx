@@ -11,6 +11,7 @@ import {registrationTC} from "../../bll/registrationReducer";
 
 
 
+
 export const RegistrationFormContainer: FC = () => {
     const {LOGIN} = PATH;
     const [email, setEmail] = useState<string>('');
@@ -29,7 +30,9 @@ export const RegistrationFormContainer: FC = () => {
         (e: ChangeEvent<HTMLInputElement>) => setRepeatPass(e.currentTarget.value),
         [setRepeatPass]
     );
+
     const dispatch = useDispatch();
+
     const singUp = useCallback(
         () => dispatch(registrationTC(email, password, repeatPass)),
         [email, password, repeatPass, dispatch]
