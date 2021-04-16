@@ -3,6 +3,7 @@ import React, { FC, ElementType } from 'react';
 import { unCamelCase } from '../../../utils/textTransform';
 import { Test } from './Test';
 import { Preloader } from '../../../common/ui/Preloader';
+import { ErrorMessage } from '../../../common/ui/ErrorMessage';
 import { LinkNative } from '../../../common/ui/LinkNative';
 import { Button } from '../../../common/ui/Button';
 import { InputText } from '../../../common/ui/InputText';
@@ -12,6 +13,10 @@ import { Select } from '../../../common/ui/Select';
 
 const exampleLibrary: ExampleLibraryType = {
   preloader: [Preloader, { text: 'Loading' }],
+  errorMessage: [
+    ErrorMessage,
+    { children: 'Error message', clickHandler: () => {} },
+  ],
   link: [LinkNative, { href: '/', children: 'Hover me' }],
   button: [Button, { children: 'Click me' }],
   buttonError: [Button, { children: 'Error', error: true }],
