@@ -8,7 +8,8 @@ import { LoginLinkType } from './LoginFormContainer';
 import { InputCheckbox } from '../../../../common/ui/InputCheckbox';
 import { randomId } from '../../../../utils/randomId';
 import { Preloader } from '../../../../common/ui/Preloader';
-import { ErrorMessage } from '../../../../common/ui/ErrorMassage';
+import { useInput } from '../../../../hooks/ValidationFormAndrew';
+import { ErrorMessage } from '../../../../common/ui/ErrorMessage';
 
 type PropsType = {
   loginLinks: LoginLinkType[];
@@ -31,14 +32,14 @@ export const LoginForm: FC<PropsType> = ({
                                            closeMessage,
                                            redirectLink,
                                          }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const email = useInput('', { isEmail: true });
+  const password = useInput('', { minLength: 8, isPassword: true });
 
   useEffect(() => {
     if (success) {
-      setEmail('');
-      setPassword('');
+      email.setValue('');
+      password.setValue('');
       setRememberMe(false);
       setSuc(false);
     }
@@ -47,13 +48,16 @@ export const LoginForm: FC<PropsType> = ({
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (email.trim() && password.trim()) {
-      sendLogin(email, password, rememberMe);
+
+    if (email.value.trim() && password.value.trim()) {
+      sendLogin(email.value, password.value, rememberMe);
     }
   };
 
-  const closeMessageHandler = () => {
+  const closeMessageHandler = (obj: any) => () => {
     closeMessage('');
+    if (obj !== '') {
+      obj.setDirty(false)}
   };
 
   if (success) {
@@ -64,22 +68,36 @@ export const LoginForm: FC<PropsType> = ({
     <div className={s.messageWrapper}>
       {loading && <Preloader text='Sending...' />}
       {error && (
-        <ErrorMessage clickHandler={closeMessageHandler}>
+        <ErrorMessage clickHandler={closeMessageHandler('')}>
           {error}
         </ErrorMessage>
       )}
     </div>
 
+    {email.isDirty && email.inputError && (
+      <ErrorMessage clickHandler={closeMessageHandler(email)}>
+        {email.inputError}
+      </ErrorMessage>
+    )}
+
     <InputText placeholder={'Login'}
                type={'email'}
-               onChangeText={setEmail}
-               value={email}
+               onChange={e => email.onChange(e)}
+               onBlur={e => email.onBlur(e)}
+               value={email.value}
                disabled={loading}
     />
+
+    {password.isDirty && password.inputError &&(
+      <ErrorMessage clickHandler={closeMessageHandler(password)}>
+        {password.inputError}
+      </ErrorMessage>
+    )}
     <InputText placeholder={'Password'}
                type={'password'}
-               onChangeText={setPassword}
-               value={password}
+               onChange={e => password.onChange(e)}
+               onBlur={e => password.onBlur(e)}
+               value={password.value}
                disabled={loading}
     />
     <InputCheckbox type={'checkbox'}
@@ -88,7 +106,7 @@ export const LoginForm: FC<PropsType> = ({
     > Remember me
     </InputCheckbox>
 
-    <Button type='submit' disabled={loading}>Submit</Button>
+    <Button type='submit' disabled={!email.inputValid || !password.inputValid || loading}>Submit</Button>
 
     <div className={s.linksForm}>
       {loginLinks.map(({ link, title }) => (
