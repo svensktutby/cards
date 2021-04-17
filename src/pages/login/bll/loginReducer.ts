@@ -1,5 +1,6 @@
 import { ThunkType } from '../../../main/bll/store';
 import { authAPI } from '../dal/loginApi';
+import { logOutAPI } from '../../profile/dal/profileApi';
 
 export enum loginActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
@@ -8,9 +9,8 @@ export enum loginActionType {
   SET_SUCCESS = 'CARDS/LOGIN/SET_SUCCESS'
 }
 
-const initialState: StateType = {
-  user: {
-    _id: '',
+const user = {
+  _id: '',
     email: '',
     name: '',
     publicCardPacksCount: 0, // количество колод
@@ -20,7 +20,10 @@ const initialState: StateType = {
     isAdmin: false,
     verified: false, // подтвердил ли почту
     rememberMe: false,
-  },
+}
+
+const initialState: StateType = {
+  user,
   loading: false,
   success: false,
   error: '',
@@ -96,7 +99,20 @@ export const loginPageTC = (email: string, password: string, rememberMe: boolean
     dispatch(setError(error));
   }
 };
+export const logoutTC = (): ThunkType<ActionsType> => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    let data = await logOutAPI.logOut();
+    dispatch(setLoading(false));
+    dispatch(setUser(user ));
 
+  } catch (e) {
+    const error = e.response
+      ? e.response.data.error
+      : (e.message + ', more details in the console');
+    dispatch(setError(error));
+  }
+};
 /** Types */
 export type StateType = {
   user: UserType;

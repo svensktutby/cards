@@ -1,0 +1,26 @@
+@import "src/common/ui/styles/base/variables";
+
+.form {
+  composes: form from "../../../../common/ui/styles/form.module.scss";
+
+  & > span {
+    color: $theme-color-dark;
+  }
+
+  & > button {
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+}
+
+.linksForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  composes: link from "../../../../common/ui/LinkNative/LinkNative.module.scss";
+}
+
+
+
