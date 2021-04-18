@@ -11,7 +11,7 @@ type PropsType = {
   error: string;
   closeMessage: (error: string) => void;
   redirectLink: string;
-  userId: string | null
+  userId: string
 };
 
 export const ProfileForm: FC<PropsType> = ({

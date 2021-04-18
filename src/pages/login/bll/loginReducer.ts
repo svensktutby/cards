@@ -1,6 +1,6 @@
 import { ThunkType } from '../../../main/bll/store';
 import { authAPI } from '../dal/loginApi';
-import { logOutAPI } from '../../profile/dal/profileApi';
+import { isAuthAPI, logOutAPI } from '../../profile/dal/profileApi';
 
 export enum loginActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
@@ -113,6 +113,20 @@ export const logoutTC = (): ThunkType<ActionsType> => async (dispatch) => {
     dispatch(setError(error));
   }
 };
+export const isAuthTC = (): ThunkType<ActionsType> => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    let data = await isAuthAPI.isAuth();
+    dispatch(setLoading(false));
+    dispatch(setUser(data));
+  } catch (e) {
+    const error = e.response
+      ? e.response.data.error
+      : (e.message + ', more details in the console');
+    dispatch(setError(error));
+  }
+};
+
 /** Types */
 export type StateType = {
   user: UserType;

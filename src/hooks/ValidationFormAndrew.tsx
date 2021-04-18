@@ -46,7 +46,7 @@ const useValidation = (value: string, validations: ValidationsType) => {
     inputValid,
   };
 };
-type InputType = ReturnType<typeof useInput>
+export type HookInputType = ReturnType<typeof useInput>
 export const useInput = (initialValue: string, validations: ValidationsType) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false); //выход из инпута

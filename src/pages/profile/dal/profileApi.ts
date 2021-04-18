@@ -6,3 +6,9 @@ export const logOutAPI = {
       .then(response => response.data);
   },
 };
+export const isAuthAPI = {
+  isAuth() {
+    return API.post(`auth/me`)
+      .then(response => response.data);
+  },
+};

@@ -8,7 +8,7 @@ import { LoginLinkType } from './LoginFormContainer';
 import { InputCheckbox } from '../../../../common/ui/InputCheckbox';
 import { randomId } from '../../../../utils/randomId';
 import { Preloader } from '../../../../common/ui/Preloader';
-import { useInput } from '../../../../hooks/ValidationFormAndrew';
+import { HookInputType, useInput } from '../../../../hooks/ValidationFormAndrew';
 import { ErrorMessage } from '../../../../common/ui/ErrorMessage';
 
 type PropsType = {
@@ -54,10 +54,11 @@ export const LoginForm: FC<PropsType> = ({
     }
   };
 
-  const closeMessageHandler = (obj: any) => () => {
+  const closeMessageHandler = (obj?: HookInputType) => () => {
     closeMessage('');
-    if (obj !== '') {
-      obj.setDirty(false)}
+    if (obj) {
+      obj.setDirty(false);
+    }
   };
 
   if (success) {
@@ -68,7 +69,7 @@ export const LoginForm: FC<PropsType> = ({
     <div className={s.messageWrapper}>
       {loading && <Preloader text='Sending...' />}
       {error && (
-        <ErrorMessage clickHandler={closeMessageHandler('')}>
+        <ErrorMessage clickHandler={closeMessageHandler()}>
           {error}
         </ErrorMessage>
       )}
@@ -88,7 +89,7 @@ export const LoginForm: FC<PropsType> = ({
                disabled={loading}
     />
 
-    {password.isDirty && password.inputError &&(
+    {password.isDirty && password.inputError && (
       <ErrorMessage clickHandler={closeMessageHandler(password)}>
         {password.inputError}
       </ErrorMessage>
