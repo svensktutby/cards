@@ -1,26 +1,27 @@
 import { ThunkType } from '../../../main/bll/store';
 import { authAPI } from '../dal/loginApi';
-import { isAuthAPI, logOutAPI } from '../../profile/dal/profileApi';
+import { changeAuthAPI, isAuthAPI, logOutAPI } from '../../profile/dal/profileApi';
 
 export enum loginActionType {
   SET_LOADING = 'CARDS/LOGIN/SET_LOADING',
   SET_USER = 'CARDS/LOGIN/SET_USER',
   SET_ERROR = 'CARDS/LOGIN/SET_ERROR',
-  SET_SUCCESS = 'CARDS/LOGIN/SET_SUCCESS'
+  SET_SUCCESS = 'CARDS/LOGIN/SET_SUCCESS',
+  CHANGE_USER = 'CARDS/LOGIN/CHANGE_USER'
 }
 
 const user = {
   _id: '',
-    email: '',
-    name: '',
-    publicCardPacksCount: 0, // количество колод
+  email: '',
+  name: '',
+  publicCardPacksCount: 0, // количество колод
 
-    created: new Date(),
-    updated: new Date(),
-    isAdmin: false,
-    verified: false, // подтвердил ли почту
-    rememberMe: false,
-}
+  created: new Date(),
+  updated: new Date(),
+  isAdmin: false,
+  verified: false, // подтвердил ли почту
+  rememberMe: false,
+};
 
 const initialState: StateType = {
   user,
@@ -43,6 +44,11 @@ export const loginReducer = (
       };
     case loginActionType.SET_USER:
       return { ...state, user: action.user };
+    case loginActionType.CHANGE_USER:
+      return {
+        ...state,
+        user: { ...state.user, name: action.name, avatar: action.avatar },
+      };
     case loginActionType.SET_SUCCESS:
       return {
         ...state,
@@ -84,6 +90,11 @@ export const setError = (error: string) =>
       error,
     },
   } as const);
+export const changeUser = (name: string, avatar: string) => ({
+  type: loginActionType.CHANGE_USER,
+  name,
+  avatar,
+} as const);
 
 /** Thunks */
 export const loginPageTC = (email: string, password: string, rememberMe: boolean): ThunkType<ActionsType> => async (dispatch) => {
@@ -104,7 +115,7 @@ export const logoutTC = (): ThunkType<ActionsType> => async (dispatch) => {
     dispatch(setLoading(true));
     let data = await logOutAPI.logOut();
     dispatch(setLoading(false));
-    dispatch(setUser(user ));
+    dispatch(setUser(user));
 
   } catch (e) {
     const error = e.response
@@ -126,6 +137,19 @@ export const isAuthTC = (): ThunkType<ActionsType> => async (dispatch) => {
     dispatch(setError(error));
   }
 };
+export const changeAuthTC = (name: string, avatar: string): ThunkType<ActionsType> => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    let data = await changeAuthAPI.changeAuth(name, avatar);
+    dispatch(setLoading(false));
+    dispatch(changeUser(data.updatedUser.name, data.updatedUser.avatar));
+  } catch (e) {
+    const error = e.response
+      ? e.response.data.error
+      : (e.message + ', more details in the console');
+    dispatch(setError(error));
+  }
+};
 
 /** Types */
 export type StateType = {
@@ -138,7 +162,8 @@ export type StateType = {
 type ActionsType = ReturnType<typeof setLoading>
   | ReturnType<typeof setUser>
   | ReturnType<typeof setError>
-  | ReturnType<typeof setSuccess>;
+  | ReturnType<typeof setSuccess>
+  | ReturnType<typeof changeUser>;
 
 export type UserType = {
   _id: string;

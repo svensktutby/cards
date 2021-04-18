@@ -12,3 +12,9 @@ export const isAuthAPI = {
       .then(response => response.data);
   },
 };
+export const changeAuthAPI = {
+  changeAuth(name: string, avatar: string) {
+    return API.put(`auth/me`, {name, avatar})
+      .then(response => response.data);
+  },
+};

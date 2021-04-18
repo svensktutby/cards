@@ -20,6 +20,7 @@ type PropsType = {
   setSuc: (success: boolean) => void;
   error: string;
   redirectLink: string;
+  userId: string;
 };
 
 export const LoginForm: FC<PropsType> = ({
@@ -29,6 +30,7 @@ export const LoginForm: FC<PropsType> = ({
                                            success,
                                            setSuc,
                                            error,
+                                           userId,
                                            closeMessage,
                                            redirectLink,
                                          }) => {
@@ -61,7 +63,7 @@ export const LoginForm: FC<PropsType> = ({
     }
   };
 
-  if (success) {
+  if (userId) {
     return <Redirect to={redirectLink} />;
   }
 

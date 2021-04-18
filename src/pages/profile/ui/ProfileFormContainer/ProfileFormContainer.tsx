@@ -3,7 +3,7 @@ import { ProfileForm } from './ProfileForm';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { PATH } from '../../../../main/ui/App/Routes';
-import { logoutTC, setError } from '../../../login/bll/loginReducer';
+import { changeAuthTC, logoutTC, setError } from '../../../login/bll/loginReducer';
 
 export const ProfileFormContainer: FC = () => {
   const dispatch = useDispatch();
@@ -13,11 +13,15 @@ export const ProfileFormContainer: FC = () => {
     (state) => state.login.loading,
   );
 
+  const changeAuth = (name: string, avatar: string) => {
+    dispatch(changeAuthTC(name, avatar));
+  };
   const sendLogOut = () => {
     dispatch(logoutTC());
   };
 
-  const userId = useTypedSelector<string | null>((state) => state.login.user._id);
+  const userId = useTypedSelector<string>((state) => state.login.user._id);
+  const user = useTypedSelector<any>((state) => state.login.user);
   const error = useTypedSelector<string>((state) => state.login.error);
   const closeMessage = (error: string) => {
     dispatch(setError(error));
@@ -26,10 +30,12 @@ export const ProfileFormContainer: FC = () => {
   return <ProfileForm
     loading={loading}
     sendLogOut={sendLogOut}
+    changeAuth={changeAuth}
     error={error}
     closeMessage={closeMessage}
     redirectLink={LOGIN}
     userId={userId}
+    user={user}
   />;
 };
 

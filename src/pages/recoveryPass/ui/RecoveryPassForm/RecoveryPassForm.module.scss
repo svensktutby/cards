@@ -10,3 +10,12 @@
 .link {
   composes: link from "../../../../common/ui/LinkNative/LinkNative.module.scss";
 }
+
+.spanAvatar {
+  display: inline-block;
+  padding-left: 10px;
+  max-width: 280px;
+  vertical-align: bottom;
+  white-space: nowrap;
+  overflow: hidden;
+}
