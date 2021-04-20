@@ -83,7 +83,7 @@ export const registrationTC = (email: string, password: string, repeatPass: stri
 };
 
 /** Types */
-type StateType = {
+export type StateType = {
   loading: boolean;
   success: boolean;
   error: string;
