@@ -38,8 +38,3 @@ export const ProfileFormContainer: FC = () => {
     user={user}
   />;
 };
-
-export type LoginLinkType = {
-  link: string;
-  title: string;
-};

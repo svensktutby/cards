@@ -113,7 +113,7 @@ export const loginPageTC = (email: string, password: string, rememberMe: boolean
 export const logoutTC = (): ThunkType<ActionsType> => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    let data = await logOutAPI.logOut();
+    await logOutAPI.logOut();
     dispatch(setLoading(false));
     dispatch(setUser(user));
 

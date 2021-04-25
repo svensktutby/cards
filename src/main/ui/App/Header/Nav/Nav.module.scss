@@ -21,7 +21,7 @@ $btnHorPad: ($btnSize - $lineW) / 2;
 $btnVertPad: ($btnSize - $linesTotalH) / 2;
 $itemsLeftPad: 20px;
 $itemsRightPad: $itemsLeftPad + $btnSize;
-$itemWidth: 80px;
+$itemWidth: 100px;
 $itemPad: 10px;
 $navItemsWidth: $itemsLeftPad + $itemsRightPad + $itemWidth * $numOfItems;
 $textAT: $navAT - $textDelayStep * ($numOfItems - 1);

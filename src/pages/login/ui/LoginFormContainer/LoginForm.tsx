@@ -45,7 +45,7 @@ export const LoginForm: FC<PropsType> = ({
       setRememberMe(false);
       setSuc(false);
     }
-  }, [success, setSuc]);
+  }, [success, setSuc, email, password]);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

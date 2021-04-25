@@ -1,22 +1,23 @@
-import React, { FC } from 'react';
-import { Provider } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import React, { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import s from './App.module.scss';
-import { store } from '../../bll/store';
 import { Header } from './Header';
 import { Main } from './Main';
+import { isAuthTC } from '../../../pages/login/bll/loginReducer';
+import { Preloader } from '../../../common/ui/Preloader';
 
 export const App: FC = () => {
+  const dispatch = useDispatch<(action: Function) => Promise<void>>();
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    dispatch(isAuthTC()).then(res => setInit(true));
+  }, []);
   return (
-    <Provider store={store}>
-      <Router>
-        <div className={s.app}>
-          <Header />
+    <div className={s.app}>
+      <Header />
 
-          <Main />
-        </div>
-      </Router>
-    </Provider>
+      {init ? <Main /> : <Preloader />}
+    </div>
   );
 };

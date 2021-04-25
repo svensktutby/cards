@@ -6,11 +6,6 @@ import { useDispatch } from 'react-redux';
 import { isAuthTC } from '../../../../pages/login/bll/loginReducer';
 
 export const Header: FC = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(isAuthTC())
-  }, [dispatch])
 
   return (
     <header className={s.header}>
